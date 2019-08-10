@@ -12,13 +12,14 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 public final class PacketHandler {
 
 	private static final String PROTICOL_VERSION = "1";
-    public static SimpleChannel channel = NetworkRegistry.newSimpleChannel(
-    		new ResourceLocation("corruption","main")
-    		,() -> PROTICOL_VERSION
-    		, PROTICOL_VERSION::equals
-    		, PROTICOL_VERSION::equals);
+    public static SimpleChannel channel;
     
     public static void register() {
+    	channel = NetworkRegistry.newSimpleChannel(
+        		new ResourceLocation("corruption","main")
+        		,() -> PROTICOL_VERSION
+        		, PROTICOL_VERSION::equals
+        		, PROTICOL_VERSION::equals);
     	int id = 0;
     	
     	channel.registerMessage(id++, PacketPedestal.class, PacketPedestal::encode, PacketPedestal::decode, PacketPedestal::handle);
